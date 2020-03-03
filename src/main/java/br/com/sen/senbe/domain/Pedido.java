@@ -8,12 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Pedido implements Serializable{
+public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String solicitante;
 	private String descricao;
 	private Double preco;
@@ -23,7 +23,7 @@ public class Pedido implements Serializable{
 	}
 	
 
-	public Pedido(int id, String solicitante, String descricao, Double preco) {
+	public Pedido(Integer id, String solicitante, String descricao, Double preco) {
 		super();
 		this.id = id;
 		this.solicitante = solicitante;
@@ -32,11 +32,11 @@ public class Pedido implements Serializable{
 	}
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -63,14 +63,16 @@ public class Pedido implements Serializable{
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-	
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -81,10 +83,15 @@ public class Pedido implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Pedido other = (Pedido) obj;
-		if (id != other.id)
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
 			return false;
 		return true;
 	}
+
+	
 
 	
 }

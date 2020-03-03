@@ -35,5 +35,5 @@ public class CheckPedidoResource {
 		List<CheckPedido> list = service.listAll();
 				return ResponseEntity.ok().body(list);
 	}
-
+	
 }
