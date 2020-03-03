@@ -16,17 +16,21 @@ public class Pedido implements Serializable{
 	private int id;
 	private String solicitante;
 	private String descricao;
+	private Double preco;
 	
 	public Pedido() {
 		
 	}
 	
-	public Pedido(int id, String solicitante, String descricao) {
+
+	public Pedido(int id, String solicitante, String descricao, Double preco) {
 		super();
 		this.id = id;
 		this.solicitante = solicitante;
 		this.descricao = descricao;
+		this.preco = preco;
 	}
+
 
 	public int getId() {
 		return id;
@@ -52,6 +56,14 @@ public class Pedido implements Serializable{
 		this.descricao = descricao;
 	}
 
+	public Double getPreco() {
+		return preco;
+	}
+	
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,5 +85,6 @@ public class Pedido implements Serializable{
 			return false;
 		return true;
 	}
+
 	
 }
