@@ -2,6 +2,8 @@ package br.com.sen.senbe.resources;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,13 @@ public class CheckPedidoResource {
 		CheckPedido obj = service.search(id);
 		
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<CheckPedido>> listAll() {
+		
+		List<CheckPedido> list = service.listAll();
+				return ResponseEntity.ok().body(list);
 	}
 
 }

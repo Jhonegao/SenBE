@@ -1,5 +1,7 @@
 package br.com.sen.senbe.services;
 
+
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,11 @@ public class CheckPedidoService {
 		Optional<CheckPedido> obj = repo.findById(id);
 		return obj.orElse(null);
 		
+	}
+	
+	public List<CheckPedido> listAll(){
+				
+		return repo.findAll();
 	}
 	
 }
