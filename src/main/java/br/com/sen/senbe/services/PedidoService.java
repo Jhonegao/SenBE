@@ -1,5 +1,5 @@
 package br.com.sen.senbe.services;
-
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,18 @@ public class PedidoService {
 		return obj.orElse(null);
 		
 	}
+	
+	public List<Pedido> listAll(){
+		
+		return repo.findAll();
+	}
+	
 	public Pedido insert(Pedido obj) {
 		obj.setId(null);
 		return repo.save(obj);
+	}
+	
+	public Pedido updateStatus(Pedido obj) {
+		return repo.saveAndFlush(obj);
 	}
 }

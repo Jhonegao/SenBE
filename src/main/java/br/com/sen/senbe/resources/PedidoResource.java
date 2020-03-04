@@ -1,8 +1,6 @@
 package br.com.sen.senbe.resources;
-
-
-
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +21,16 @@ public class PedidoResource {
 	@Autowired
 	private PedidoService service;
 	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Pedido>> listAll() {
+		
+		List<Pedido> list = service.listAll();
+		return ResponseEntity.ok().body(list);
+	}
+
 	@RequestMapping(value="/{id}",method = RequestMethod.GET)
-	public ResponseEntity<?> findOne(@PathVariable Integer id) {
-		//Pedido p1 = new Pedido(1, "Joao", "Pilhas");
-		//Pedido p2 = new Pedido(2, "Antonio", "Canetas");
-		
+	public ResponseEntity<Pedido> findOne(@PathVariable Integer id) {	
 		Pedido obj = service.search(id);
-		
 		return ResponseEntity.ok().body(obj);
 	}
 	
@@ -39,6 +40,13 @@ public class PedidoResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/{id}",method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Pedido obj, @PathVariable Integer id){
+		obj.setId(id);
+		obj = service.updateStatus(obj);
+		return ResponseEntity.noContent().build();
 	}
 
 }
