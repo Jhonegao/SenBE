@@ -4,10 +4,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import br.com.sen.senbe.domain.Pedido;
 import br.com.sen.senbe.repositories.PedidoRepository;
 
+@CrossOrigin
 @Service
 public class PedidoService {
 
